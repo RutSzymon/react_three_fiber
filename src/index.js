@@ -1,7 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Canvas } from "react-three-fiber";
+
 import "./styles.css";
+
+function Light({ brightness, color }) {
+  return (
+    <rectAreaLight
+      width={3}
+      height={3}
+      color={color}
+      intensity={brightness}
+      position={[-2, 0, 5]}
+      lookAt={[0, 0, 0]}
+      penumbra={1}
+      castShadow
+    />
+  );
+}
 
 function Sphere() {
   return (
@@ -22,6 +38,7 @@ function Sphere() {
 function App() {
   return (
     <Canvas>
+      <Light brightness={10} color={"white"} />
       <Sphere />
     </Canvas>
   );
