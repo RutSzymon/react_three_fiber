@@ -19,6 +19,28 @@ function Light({ brightness, color }) {
   );
 }
 
+// Geometry
+
+function GroundPlane() {
+  return (
+    <mesh receiveShadow rotation={[5, 0, 0]} position={[0, -1, 0]}>
+      {" "}
+      <planeBufferGeometry attach="geometry" args={[500, 500]} />{" "}
+      <meshStandardMaterial attach="material" color="white" />{" "}
+    </mesh>
+  );
+}
+
+function BackDrop() {
+  return (
+    <mesh receiveShadow position={[0, -1, -5]}>
+      {" "}
+      <planeBufferGeometry attach="geometry" args={[500, 500]} />{" "}
+      <meshStandardMaterial attach="material" color="white" />{" "}
+    </mesh>
+  );
+}
+
 function Sphere() {
   return (
     <mesh visible userData={{ test: "hello" }} position={[0, 0, 0]} castShadow>
@@ -40,6 +62,8 @@ function App() {
     <Canvas>
       <Light brightness={10} color={"white"} />
       <Sphere />
+      <BackDrop />
+      <GroundPlane />
     </Canvas>
   );
 }
