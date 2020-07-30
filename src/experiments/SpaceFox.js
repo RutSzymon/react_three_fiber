@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
-import { Canvas, useLoader } from "react-three-fiber";
+import React, { Suspense, useRef } from "react";
+import { Canvas, useLoader, useFrame } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "./styles.css";
 
@@ -20,9 +20,16 @@ function Loading() {
 }
 
 function ArWing() {
-  const { nodes } = useLoader(GLTFLoader, "models/arwing.glb");
+  const group = useRef();
+  const { nodes } = useLoader(GLTFLoader, "3d_models/SpaceFox/arwing.glb");
+
+  // useFrame will run outside of react in animation frames to optimize updates.
+  useFrame(() => {
+    group.current.rotation.y += 0.004;
+  });
+
   return (
-    <group>
+    <group ref={group}>
       <mesh visible geometry={nodes.Default.geometry}>
         <meshStandardMaterial
           attach="material"
