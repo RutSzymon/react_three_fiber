@@ -8,7 +8,7 @@ import {
   LinearMipmapLinearFilter,
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import "./Skybox.css";
+import "./styles.css";
 
 extend({ OrbitControls });
 

@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Canvas } from "react-three-fiber";
 
-import "./ThreePointLighting.css";
+import "./styles.css";
 
 function Light({ brightness, color }) {
   return (
