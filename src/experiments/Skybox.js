@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Canvas, extend, useThree, useFrame } from "react-three-fiber";
+import { CubeTextureLoader } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import "./Skybox.css";
 
@@ -27,6 +28,19 @@ const CameraControls = () => {
 
 // Loads the skybox texture and applies it to the scene.
 function SkyBox() {
+  const { scene } = useThree();
+  const loader = new CubeTextureLoader();
+  // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
+  const texture = loader.load([
+    "images/Skybox/1.jpg",
+    "images/Skybox/2.jpg",
+    "images/Skybox/3.jpg",
+    "images/Skybox/4.jpg",
+    "images/Skybox/5.jpg",
+    "images/Skybox/6.jpg",
+  ]);
+  // Set the scene background property to the resulting texture.
+  scene.background = texture;
   return null;
 }
 
