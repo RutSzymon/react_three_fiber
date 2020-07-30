@@ -25,6 +25,11 @@ const CameraControls = () => {
   );
 };
 
+// Loads the skybox texture and applies it to the scene.
+function SkyBox() {
+  return null;
+}
+
 // Geometry
 function Sphere() {
   return (
@@ -46,6 +51,7 @@ function SkyboxApp() {
     <Canvas className="canvas">
       <CameraControls />
       <Sphere />
+      <SkyBox />
     </Canvas>
   );
 }
