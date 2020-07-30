@@ -34,11 +34,6 @@ function ArWing() {
   const group = useRef();
   const { nodes } = useLoader(GLTFLoader, "3d_models/SpaceFox/arwing.glb");
 
-  // useFrame will run outside of react in animation frames to optimize updates.
-  useFrame(() => {
-    group.current.rotation.y += 0.004;
-  });
-
   return (
     <group ref={group}>
       <mesh visible geometry={nodes.Default.geometry}>
@@ -64,7 +59,17 @@ const CameraControls = () => {
   // Ref to the controls, so that we can update them on every frame using useFrame
   const controls = useRef();
   useFrame((state) => controls.current.update());
-  return <orbitControls ref={controls} args={[camera, domElement]} />;
+  return (
+    <orbitControls
+      ref={controls}
+      args={[camera, domElement]}
+      enableZoom={false}
+      maxAzimuthAngle={Math.PI / 4}
+      maxPolarAngle={Math.PI}
+      minAzimuthAngle={-Math.PI / 4}
+      minPolarAngle={0}
+    />
+  );
 };
 
 export default function App() {
