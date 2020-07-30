@@ -1,7 +1,12 @@
 import React, { Suspense, useRef } from "react";
-import { Canvas, useLoader, useFrame } from "react-three-fiber";
+import { Canvas, useLoader, useFrame, extend } from "react-three-fiber";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "./styles.css";
+
+// Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
+extend({ OrbitControls });
 
 function Loading() {
   return (
