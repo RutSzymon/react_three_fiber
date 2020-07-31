@@ -158,8 +158,8 @@ export default function App() {
   return (
     <Canvas style={{ background: "black" }}>
       <RecoilRoot>
-        <CameraControls />
         <directionalLight intensity={0.5} />
+        <ambientLight intensity={0.1} />
         <Suspense fallback={<Loading />}>
           <ArWing />
         </Suspense>
