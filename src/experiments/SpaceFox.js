@@ -7,9 +7,10 @@ import {
   useThree,
 } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TextureLoader } from "three";
-import { RecoilRoot } from "recoil";
+import { shipPositionState } from "../components/gameState";
 
 import "./styles.css";
 
