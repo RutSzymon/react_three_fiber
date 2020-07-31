@@ -155,7 +155,7 @@ const CameraControls = () => {
 
 export default function App() {
   return (
-    <Canvas style={{ background: "white" }}>
+    <Canvas style={{ background: "black" }}>
       <CameraControls />
       <directionalLight intensity={0.5} />
       <Suspense fallback={<Loading />}>
