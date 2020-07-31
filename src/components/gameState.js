@@ -12,3 +12,13 @@ export const enemyPositionState = atom({
     { x: 20, y: 0, z: -100 },
   ], // default value (aka initial value)
 });
+
+export const laserPositionState = atom({
+  key: "laserPositions", // unique ID (with respect to other atoms/selectors)
+  default: [], // default value (aka initial value)
+});
+
+export const scoreState = atom({
+  key: "score", // unique ID (with respect to other atoms/selectors)
+  default: 0, // default value (aka initial value)
+});
