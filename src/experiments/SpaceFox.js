@@ -7,10 +7,10 @@ import {
   useThree,
 } from "react-three-fiber";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { RecoilRoot, useRecoilState } from "recoil";
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TextureLoader } from "three";
-import { shipPositionState } from "../components/gameState";
+import { shipPositionState, laserPositionState } from "../components/gameState";
 
 import "./styles.css";
 
@@ -131,6 +131,21 @@ function Target() {
   );
 }
 
+// Draws all of the lasers existing in state.
+function Lasers() {
+  const lasers = useRecoilValue(laserPositionState);
+  return (
+    <group>
+      {lasers.map((laser) => (
+        <mesh position={[laser.x, laser.y, laser.z]} key={`${laser.id}`}>
+          <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+          <meshStandardMaterial attach="material" emissive="white" wireframe />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 const CameraControls = () => {
   // Get a reference to the Three.js Camera, and the canvas html element.
   // We need these to setup the OrbitControls component.
@@ -165,6 +180,7 @@ export default function App() {
           <ArWing />
         </Suspense>
         <Target />
+        <Lasers />
         <Terrain />
       </RecoilRoot>
     </Canvas>
