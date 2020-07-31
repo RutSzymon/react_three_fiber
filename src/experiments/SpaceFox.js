@@ -62,7 +62,7 @@ function Terrain() {
 }
 
 function ArWing() {
-  const [shipPosition, setShipPosition] = useState();
+  const [shipPosition, setShipPosition] = useRecoilState(shipPositionState);
 
   const ship = useRef();
   useFrame(({ mouse }) => {
