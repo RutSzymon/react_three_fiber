@@ -9,6 +9,7 @@ import {
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TextureLoader } from "three";
+import { RecoilRoot } from "recoil";
 
 import "./styles.css";
 
@@ -156,13 +157,15 @@ const CameraControls = () => {
 export default function App() {
   return (
     <Canvas style={{ background: "black" }}>
-      <CameraControls />
-      <directionalLight intensity={0.5} />
-      <Suspense fallback={<Loading />}>
-        <ArWing />
-      </Suspense>
-      <Target />
-      <Terrain />
+      <RecoilRoot>
+        <CameraControls />
+        <directionalLight intensity={0.5} />
+        <Suspense fallback={<Loading />}>
+          <ArWing />
+        </Suspense>
+        <Target />
+        <Terrain />
+      </RecoilRoot>
     </Canvas>
   );
 }
