@@ -10,7 +10,11 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { TextureLoader } from "three";
-import { shipPositionState, laserPositionState } from "../components/gameState";
+import {
+  shipPositionState,
+  laserPositionState,
+  enemyPositionState,
+} from "../components/gameState";
 
 import "./styles.css";
 
@@ -131,6 +135,21 @@ function Target() {
   );
 }
 
+// Manages Drawing enemies that currently exist in state
+function Enemies() {
+  const enemies = useRecoilValue(enemyPositionState);
+  return (
+    <group>
+      {enemies.map((enemy) => (
+        <mesh position={[enemy.x, enemy.y, enemy.z]} key={`${enemy.x}`}>
+          <sphereBufferGeometry attach="geometry" args={[2, 8, 8]} />
+          <meshStandardMaterial attach="material" color="white" wireframe />
+        </mesh>
+      ))}
+    </group>
+  );
+}
+
 // An invisible clickable element in the front of the scene.
 // Manages creating lasers with the correct initial velocity on click.
 function LaserController() {
@@ -215,6 +234,7 @@ export default function App() {
           <ArWing />
         </Suspense>
         <Target />
+        <Enemies />
         <Lasers />
         <Terrain />
         <LaserController />
